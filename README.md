@@ -3,7 +3,7 @@
 ## Requirements
 
 - You must have Docker installed.
-- You must have a connection established with the Internet.3
+- You must have a connection established with the Internet.
 
 ### Windows
 - If you are on Windows, you must have Chocolatey installed with "make" added to it. Instructions for downloading & installing Chocolatey available at https://chocolatey.org/install.
