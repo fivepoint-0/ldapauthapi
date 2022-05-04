@@ -4,7 +4,7 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 
-AppDataSource.initialize().then(async (dataSource) => {
+AppDataSource.initialize().then(async dataSource => {
 
     // create express app
     const app = express()
@@ -33,8 +33,8 @@ AppDataSource.initialize().then(async (dataSource) => {
     // ...
 
     // start express server
-    app.listen(3000)
+    app.listen(process.env.SERVER_PORT)
 
-    console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results")
+    console.log(`Express server started on port ${process.env.SERVER_PORT}.`)
 
 }).catch(error => console.log(error))

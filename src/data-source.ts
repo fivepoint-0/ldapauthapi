@@ -5,7 +5,7 @@ import { Session } from "./entity/Session"
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
-    port: 27017,
+    port: process.env.MONGO_CONTAINER_PORT as unknown as number,
     name: 'default',
     database: "test",
     host: "mongodb",

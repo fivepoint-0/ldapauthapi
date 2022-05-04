@@ -4,7 +4,7 @@ services:
     image: sessionapi
     container_name: "session-api"
     ports:
-      - "3000:3000"
+      - "${API_SERVER_PORT}:${API_SERVER_PORT}"
     depends_on:
       - mongodb
   mongodb:
