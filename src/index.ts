@@ -33,8 +33,8 @@ AppDataSource.initialize().then(async dataSource => {
     // ...
 
     // start express server
-    app.listen(process.env.SERVER_PORT)
+    app.listen(process.env.API_SERVER_PORT)
 
-    console.log(`Express server started on port ${process.env.SERVER_PORT}.`)
+    console.log(`Express server started on port ${process.env.API_SERVER_PORT}.`)
 
 }).catch(error => console.log(error))
