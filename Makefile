@@ -1,5 +1,4 @@
 SHELL := /bin/bash 
-.DEFAULT_GOAL := all
 
 up:
 	@if [[ `docker images | grep sessionapi` ]]; then \
@@ -16,5 +15,3 @@ image:
 
 env:
 	@echo API_SERVER_PORT=3000 > .env
-
-all: env image
