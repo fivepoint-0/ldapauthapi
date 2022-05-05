@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm"
+import { getRepository, ObjectID } from "typeorm"
 import { NextFunction, Request, Response } from "express"
 import { Server } from "../entity/Server"
 
@@ -7,19 +7,19 @@ export class LdapServerController {
   // based on a type.
 
   async all(request: Request, response: Response, next: NextFunction) {
-    return request.locals.dataSource.getRepository(Server).find()
+    return request.locals.dataSource.getMongoRepository(Server).find()
   }
 
   async one(request: Request, response: Response, next: NextFunction) {
-    return request.locals.dataSource.getRepository(Server).findOne(request.params.id)
+    return request.locals.dataSource.getMongoRepository(Server).findOne({where: {id: request.params.id as unknown as ObjectID}})
   }
 
   async save(request: Request, response: Response, next: NextFunction) {
-    return request.locals.dataSource.getRepository(Server).save(request.body)
+    return request.locals.dataSource.getMongoRepository(Server).save(request.body)
   }
 
   async remove(request: Request, response: Response, next: NextFunction) {
-    let serverToRemove = await request.locals.dataSource.getRepository(Server).findOne(request.params.id)
-    await request.locals.dataSource.getRepository(Server).remove(serverToRemove)
+    let serverToRemove = await request.locals.dataSource.getRepository(Server).findOne({where: {id: request.params.id as unknown as ObjectID}})
+    await request.locals.dataSource.getMongoRepository(Server).remove(serverToRemove)
   }
 }

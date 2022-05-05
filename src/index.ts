@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
+import { Server } from "./entity/Server"
 
 AppDataSource.initialize().then(async dataSource => {
 
@@ -11,7 +12,7 @@ AppDataSource.initialize().then(async dataSource => {
     app.use(bodyParser.json())
 
     app.use('*', (req, res, next) => {
-        req.locals = {}
+        req.locals = {};
         req.locals.dataSource = dataSource
         next()
     })
@@ -29,10 +30,17 @@ AppDataSource.initialize().then(async dataSource => {
         })
     })
 
-    // setup express app here
-    // ...
+    let serverRepository = dataSource.getMongoRepository(Server)
 
-    // start express server
+    await serverRepository.save({
+        active: true,
+        baseDN: 'dc=example,dc=org',
+        domain: '',
+        host: 'openldap',
+        port: '1389',
+        lockoutCount: 3,
+        cookieTimer: 28800
+    })
     app.listen(process.env.API_SERVER_PORT)
 
     console.log(`Express server started on port ${process.env.API_SERVER_PORT}.`)

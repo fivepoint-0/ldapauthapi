@@ -1,4 +1,5 @@
 import { Client, createClient, SearchCallBack, SearchOptions } from 'ldapjs'
+import { GroupSearcher } from './groupSearcher'
 
 // Define client definition
 export default class LdapClient {
