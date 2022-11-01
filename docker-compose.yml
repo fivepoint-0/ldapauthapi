@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api:
+    image: sessionapi
+    container_name: "session-api"
+    ports:
+      - "${API_SERVER_PORT}:${API_SERVER_PORT}"
+    depends_on:
+      - mongodb
+    environment:
+      - API_SERVER_PORT=${API_SERVER_PORT}
+  mongodb:
+    image: "mongo:4.0.6"
+    container_name: "mongodb"
+    volumes: 
+    - ./mongo/data:/data/db
+    ports:
+      - "27017:27017"
+    # expose:
+    #   - "27017"
+
