@@ -8,3 +8,4 @@ temp/
 .env*
 mongo/
 src/ldapTest.ts
+package-lock.json

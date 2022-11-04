@@ -14,8 +14,6 @@ services:
     container_name: "mongodb"
     volumes: 
     - ./mongo/data:/data/db
-    ports:
-      - "27017:27017"
-    # expose:
-    #   - "27017"
+    expose:
+      - "27017"
 
