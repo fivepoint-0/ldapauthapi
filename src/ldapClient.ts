@@ -14,7 +14,8 @@ export default class LdapClient {
   constructor(url: string | string[], username: string, password: string) {
     this.username = username
     this.password = password
-    this.client = createClient({ url: url })
+
+    this.client = createClient({ url: url.includes("ldap://") ? url : `ldap://${url}` })
   }
 
   // Bind will throw a Promise rejection if the login to the LDAP server fails
